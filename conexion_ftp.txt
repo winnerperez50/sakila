@@ -1,0 +1,9 @@
+Mi pagina web: thewinnersone.000webhostapp.com
+
+Conexion FTP
+
+servidor: files.000webhost.com
+nombre usuario: thewinnersone
+contraseña: Lamafiawi
+
+Informacion de base de datos
