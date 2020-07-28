@@ -1,0 +1,8 @@
+# Prevenir que se muestren los archivos de una carpeta
+Options -Indexes
+
+# Personalizar la pagina 404
+ErrorDocument 404 /sakila/errores/404.php
+
+# Personalizar la pagina 403
+ErrorDocument 403 /sakila/errores/403.php
