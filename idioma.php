@@ -7,6 +7,8 @@ $nombrePagina = "Idioma";
 // Declarar las variabes
 $nombreIdioma = $_POST["nombreIdioma"] ?? "";
 
+
+// Asegurarnos de que el usuario haya echo click en el botom Guardar idioma
 try {
     if ( isset($_POST['guardarIdiomas']) ) {
 

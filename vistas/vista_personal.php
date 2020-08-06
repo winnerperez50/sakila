@@ -49,13 +49,7 @@
                         </div>
 
 
-                        <div class="form-file mt-4">
-                            <input type="file" class="form-file-input" id="foto" name="foto">
-                            <label class="form-file-label" for="foto">
-                                <span class="form-file-text">Selecciona una foto...</span>
-                                <span class="form-file-button">Buscar</span>
-                            </label>
-                        </div>
+
 
                         <div class="mb-3">
                             <label for="email">Email</label>
@@ -92,17 +86,92 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="contrasena">Contraseña</label>
-                            <input type="text" name="contraena" id="contrasena" class="form-control">
+                            <label for="password">Contraseña</label>
+                            <input type="password" name="password" id="password" class="form-control">
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="guardarDireccion" class="btn btn-info">Guardar</button>
+                            <button type="submit" name="guardarPersonal" class="btn btn-info">Guardar</button>
                         </div>
 
                     </form>
+
+                    <?php
+                    if ( isset($error) ) {
+                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                                {$error}
+                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                              </button>
+                    </div>";
+                    }
+
+                    if ( isset($mensaje) ) {
+                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                                {$mensaje}
+                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                              </button>
+                      </div>";
+                    }
+
+                    ?>
+
                 </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Tienda</th>
+                        <th scope="col">Activo</th>
+                        <th scope="col">Nombre Usuario</th>
+
+
+                        </thead>
+                        <tbody>
+
+                        <?php
+                        foreach ( $infoPersonales as $infoPersonal ) {
+                            if ( $infoPersonal['active'] == 1 ) {
+                                $icono = '<i class=\'fas fa-check text-success\'></i>';
+                            } else {
+                                $icono = '<i class=\'fas fa-times text-danger\'></i>';
+                            }
+
+                            echo "<tr>
+                                    <th scope=\"row\">{$infoPersonal["staff_id"]}</th>
+                                    <td>{$infoPersonal["first_name"]}</td>
+                                    <td>{$infoPersonal["last_name"]}</td>
+                                    <td>{$infoPersonal["address"]}</td>
+                                    <td>{$infoPersonal["email"]}</td>
+                                    <td>{$infoPersonal["store_id"]}</td>
+                                     <td>
+                                   {$infoPersonal['activo']}
+                                   {$icono}
+                                   </td>
+                                    <td>{$infoPersonal["username"]}</td>
+                                                                    
+                                   
+                                </tr>";
+
+                        }
+
+
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
 
         </div>
 
@@ -110,6 +179,7 @@
 
 </div>
 
+<?php include_once "partes/parte_foot.php"; ?>
 
 </body>
 </html>

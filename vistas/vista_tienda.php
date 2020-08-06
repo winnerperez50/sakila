@@ -27,8 +27,8 @@ include_once "funciones/ayudante.php";
                     <form action="" method="post">
 
                         <div class="mb-3">
-                            <label for="gerente">Gerente personal</label>
-                            <select name="gerente" id="gerente" class="form-select">
+                            <label for="gerentePersonal">Gerente personal</label>
+                            <select name="gerentePersonal" id="gerentePersonal" class="form-select">
                                 <option value="">Seleccione un gerente</option>
                                 <?php
 
@@ -44,9 +44,10 @@ include_once "funciones/ayudante.php";
 
 
                         <div class="mb-3">
-                            <label for="direccion">Direccion</label>
-                            <select name="direccion" id="direccion" class="form-select">
+                            <label for="gerenteDireccion">Direccion</label>
+                            <select name="gerenteDireccion" id="gerenteDireccion" class="form-select">
                                 <option value="">Listado de direcciones</option>
+
                                 <?php
 
                                 foreach ( $direcciones as $direccion ) {
@@ -61,10 +62,34 @@ include_once "funciones/ayudante.php";
 
 
                         <div class="mb-3">
-                            <button type="submit" name="guardarDireccion" class="btn btn-info">Guardar</button>
+                            <button type="submit" name="guardarTienda" class="btn btn-info">Guardar</button>
                         </div>
 
                     </form>
+
+
+                    <?php
+                    if ( isset($error) ) {
+                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                                    {$error}
+                                         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                            <span aria-hidden=\"true\">&times;</span>
+                                  </button>
+                        </div>";
+                    }
+
+                    if ( isset($mensaje) ) {
+                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                                    {$mensaje}
+                                         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                            <span aria-hidden=\"true\">&times;</span>
+                                  </button>
+                          </div>";
+                    }
+
+                    ?>
+
+
                 </div>
             </div>
             <hr>
@@ -75,7 +100,7 @@ include_once "funciones/ayudante.php";
                         <thead>
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Tienda</th>
                         </thead>
                         <tbody>
 
@@ -104,6 +129,6 @@ include_once "funciones/ayudante.php";
 
 </div>
 
-
+<?php include_once "partes/parte_foot.php"; ?>
 </body>
 </html>

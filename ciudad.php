@@ -9,7 +9,7 @@ $nombrePagina = "Ciudad";
 $nombreCiudad = $_POST["nombreCiudad"] ?? "";
 $idPais = $_POST["pais"] ?? "";
 
-// Asegurarnos de que el usuario alla echo click en el boton guardar.
+// Asegurarnos de que el usuario alla echo click en el boton guardar ciudad.
 try {
     if ( isset($_POST['guardar_ciudad']) ) {
 

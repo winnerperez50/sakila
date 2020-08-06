@@ -66,18 +66,77 @@ include_once "funciones/ayudante.php";
                             <input type="tel" name="telefono" id="telefono" class="form-control">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="ubicacion">Ubicacion</label>
-                            <input type="text" name="ubicacion" id="ubicacion" class="form-control">
-                        </div>
 
                         <div class="mb-3">
                             <button type="submit" name="guardarDireccion" class="btn btn-info">Guardar</button>
                         </div>
 
                     </form>
+
+                    <?php
+                    if ( isset($error) ) {
+                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                                {$error}
+                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                              </button>
+                    </div>";
+                    }
+
+                    if ( isset($mensaje) ) {
+                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                                {$mensaje}
+                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                              </button>
+                      </div>";
+                    }
+
+                    ?>
+
+
                 </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <th scope="col">Id</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Direccion2</th>
+                        <th scope="col">Distrito</th>
+                        <th scope="col">Ciudad</th>
+                        <th scope="col">Codigo postal</th>
+                        <th scope="col">Telefono</th>
+                        </thead>
+                        <tbody>
+
+                        <?php
+                        foreach ( $infoDirecciones as $direccion ) {
+                            echo "<tr>
+                                    <th scope=\"row\">{$direccion["address_id"]}</th>
+                                    <td>{$direccion["address"]}</td>
+                                    <td>{$direccion["address2"]}</td>
+                                    <td>{$direccion["district"]}</td>
+                                    <td>{$direccion["city"]}</td>
+                                    <td>{$direccion["postal_code"]}</td>
+                                    <td>{$direccion["phone"]}</td>
+                                   
+                            
+                                </tr>";
+
+                        }
+
+
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
 
         </div>
 
@@ -85,6 +144,7 @@ include_once "funciones/ayudante.php";
 
 </div>
 
+<?php require_once "partes/parte_foot.php"; ?>
 
 </body>
 </html>

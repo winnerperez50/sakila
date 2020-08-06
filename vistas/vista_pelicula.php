@@ -35,10 +35,22 @@ include_once "funciones/ayudante.php";
                             <input type="text" name="descripcion" id="descripcion" class="form-control">
                         </div>
 
+
                         <div class="mb-3">
-                            <label for="lanzamiento">Año de lanzamiento</label>
-                            <input type="number" name="lanzamiento" id="lanzamiento" class="form-control">
+                            <label for="anoLanzamiento" class="form-label">Año de lanzmiento</label>
+                            <input class="form-control" list="listadoAnios" name="anoLanzamiento" id="anoLanzamiento"
+                                   placeholder="Elige o digita el año de lanzamiento">
+                            <datalist id="listadoAnios">
+                                <?php
+
+                                for ( $year = date("Y"); $year >= 1900; $year-- ) {
+                                    echo "<option value=\"{$year}\">";
+                                }
+
+                                ?>
+                            </datalist>
                         </div>
+
 
                         <div class="mb-3">
                             <label for="idioma">Idioma original:</label>
@@ -57,8 +69,8 @@ include_once "funciones/ayudante.php";
                         </div>
 
                         <div class="mb-3">
-                            <label for="idioma">Idiomas</label>
-                            <select name="idioma" id="idioma" class="form-select">
+                            <label for="idioma2">Idiomas</label>
+                            <select name="idioma2" id="idioma2" class="form-select">
                                 <option value="">Elige una ciudad</option>
                                 <?php
 
@@ -88,27 +100,120 @@ include_once "funciones/ayudante.php";
                         </div>
 
                         <div class="mb-3">
-                            <label for="costo">Costo de reemplazo</label>
-                            <input type="text" name="costo" id="costo" class="form-control">
+                            <label for="reemplazo">Costo de reemplazo</label>
+                            <input type="text" name="reemplazo" id="reemplazo" class="form-control">
                         </div>
 
                         <div class="mb-3">
-                            <label for="clasificacion">Clasificacion</label>
-                            <input type="text" name="clasificacion" id="clasificacion" class="form-control">
+                            <label for="clasificacion">Rating</label>
+                            <select name="clasificacion" id="clasificacion" class="form-select">
+                                <option value="">Elige un rating</option>
+                                <?php
+
+                                $ratings = [ 'G', 'PG', 'PG-13', 'R', 'NC-17' ];
+
+                                foreach ( $ratings as $rating ) {
+                                    echo " <option value=\"{$rating}\">{$rating}</option>";
+                                }
+
+                                ?>
+                            </select>
+
                         </div>
 
                         <div class="mb-3">
-                            <label for="especiales">Caracteristicas especiales</label>
-                            <input type="text" name="especiales" id="especiales" class="form-control">
+                            <label for="caracteristicasEspeciales">Caracteristicas especiales</label>
+                            <select name="caracteristicasEspeciales" id="caracteristicasEspeciales" class="form-select"
+                                    multiple>
+                                <option value="">Elige una o mas caracteristicas especiales</option>
+                                <?php
+
+                                $caracteristicas = [ 'trailers', 'comentaries', 'deleted scenes', 'behind the scenes' ];
+
+                                foreach ( $caracteristicas as $caracteristica ) {
+                                    echo " <option value=\"{$caracteristica}\">{$caracteristica}</option>";
+                                }
+
+                                ?>
+                            </select>
+
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="guardar" class="btn btn-info">Guardar</button>
+                            <button type="submit" name="guardarPelicula" class="btn btn-info">Guardar</button>
                         </div>
 
                     </form>
+
+                    <?php
+                    if ( isset($error) ) {
+                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                                {$error}
+                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                              </button>
+                    </div>";
+                    }
+
+                    if ( isset($mensaje) ) {
+                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                                {$mensaje}
+                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                              </button>
+                      </div>";
+                    }
+
+                    ?>
+
                 </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <th scope="col">Id pelicula</th>
+                        <th scope="col">titulo</th>
+                        <th scope="col">Año lanzamiento</th>
+                        <th scope="col">Idioma original</th>
+                        <th scope="col">Otro idioma</th>
+                        <th scope="col">Duracion de alquiler</th>
+                        <th scope="col">Tasa de arrendamiento</th>
+                        <th scope="col">Tamaño</th>
+                        <th scope="col">Costo de reemplazo</th>
+                        <th scope="col">Clasificacion</th>
+                        <th scope="col">Caracteristicas especiales</th>
+
+
+                        </thead>
+                        <tbody>
+
+                        <?php
+                        foreach ( $infoPeliculas as $infoPelicula ) {
+                            echo "<tr>
+                                    <th scope=\"row\">{$infoPelicula["film_id"]}</th>
+                                    <td>{$infoPelicula["title"]}</td>
+                                    <td>{$infoPelicula["description"]}</td>
+                                    <td>{$infoPelicula["release_year"]}</td>
+                                    <td>{$infoPelicula["idioma_oficial"]}</td>
+                                    <td>{$infoPelicula["rental_rate"]}</td>
+                                   <td>{$infoPelicula["length"]}</td>
+                                    <td>{$infoPelicula["replacement_cost"]}</td>
+                                    <td>{$infoPelicula["rating"]}</td>                                                                                         
+                                    <td>{$infoPelicula["special_features"]}</td>
+                                    </tr>";
+
+                        }
+
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
 
         </div>
 
@@ -116,6 +221,6 @@ include_once "funciones/ayudante.php";
 
 </div>
 
-
+<?php include_once "partes/parte_foot.php"; ?>
 </body>
 </html>

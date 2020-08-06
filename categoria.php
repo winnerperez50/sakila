@@ -7,6 +7,7 @@ $nombrePagina = "Categoria";
 // Declarar las variabes
 $nombreCategoria = $_POST["nombreCategoria"] ?? "";
 
+// Asegurarnos de que el usuario haya echo click en el botom Guardar categoria
 try {
     if ( isset($_POST['guardarCategorias']) ) {
 

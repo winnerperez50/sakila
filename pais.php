@@ -7,6 +7,8 @@ $nombrePagina = "Pais";
 // Declarar las variabes
 $nombrePais = $_POST["nombrePais"] ?? "";
 
+
+// Asegurarnos de que el usuario haya echo click en el botom Guardar pais
 try {
     if ( isset($_POST['guardarPais']) ) {
 

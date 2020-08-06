@@ -18,3 +18,13 @@ function obtenerInformacionTiendas($conexion)
 
     return $conexion->query($sql)->fetchAll();
 }
+
+
+function insertarTienda($conexion, $datos)
+{
+    $sql = "INSERT INTO store (manager_staff_id, address_id) VALUES (:gerentePersonal, :gerenteDireccion);";
+
+    return $conexion->prepare($sql)->execute($datos);
+}
+
+
