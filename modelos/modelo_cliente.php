@@ -8,7 +8,7 @@ function obtenerInformacionClientes($conexion)
        c.store_id,
        c.first_name,
        c.last_name,
-       CONCAT(C.first_name, ' ', C.last_name) AS name,
+       CONCAT(c.first_name, ' ', c.last_name) AS name,
        LOWER(c.email) AS email,
        c.address_id,
        c.create_date,

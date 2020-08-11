@@ -1,11 +1,10 @@
 <?php include_once "partes/parte_head.php"; ?>
 
-<body>
-
+<body
 
 <!-- Incluyo sakila en la barra superior -->
 <?php include_once "modificacion.hp/modifificacion.php";
-include_once "funciones/ayudante.php";
+
 ?>
 
 
@@ -55,11 +54,11 @@ include_once "funciones/ayudante.php";
                         <div class="mb-3">
                             <label for="idioma">Idioma original:</label>
                             <select name="idioma" id="idioma" class="form-select">
-                                <option value="">Elige una ciudad</option>
+                                <option value="">Elige un idioma</option>
                                 <?php
 
                                 foreach ( $idiomas as $idioma ) {
-                                    echo "<option>{$idioma["name"]}</option>";
+                                    echo "<option value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
                                 }
 
                                 ?>
@@ -71,11 +70,11 @@ include_once "funciones/ayudante.php";
                         <div class="mb-3">
                             <label for="idioma2">Idiomas</label>
                             <select name="idioma2" id="idioma2" class="form-select">
-                                <option value="">Elige una ciudad</option>
+                                <option value="">Elige un idioma</option>
                                 <?php
 
                                 foreach ( $idiomas as $idioma ) {
-                                    echo "<option>{$idioma["name"]}</option>";
+                                    echo "<option value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
                                 }
 
                                 ?>
@@ -90,8 +89,8 @@ include_once "funciones/ayudante.php";
                         </div>
 
                         <div class="mb-3">
-                            <label for="arendamiento">Tasa de arendamiento</label>
-                            <input type="text" name="arendamiento" id="arendamiento" class="form-control">
+                            <label for="arrendamiento">Tasa de arendamiento</label>
+                            <input type="text" name="arrendamiento" id="arrendamiento" class="form-control">
                         </div>
 
                         <div class="mb-3">
@@ -123,7 +122,8 @@ include_once "funciones/ayudante.php";
 
                         <div class="mb-3">
                             <label for="caracteristicasEspeciales">Caracteristicas especiales</label>
-                            <select name="caracteristicasEspeciales" id="caracteristicasEspeciales" class="form-select"
+                            <select name="caracteristicasEspeciales[]" id="caracteristicasEspeciales"
+                                    class="form-select"
                                     multiple>
                                 <option value="">Elige una o mas caracteristicas especiales</option>
                                 <?php

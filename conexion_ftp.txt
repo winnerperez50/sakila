@@ -7,3 +7,7 @@ nombre usuario: thewinnersone
 contraseña: Lamafiawi
 
 Informacion de base de datos
+
+Database name: id12552233_sakila
+Database username: id12552233_winner
+Password: M*Ds58/PS[RzDhc!
