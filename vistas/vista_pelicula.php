@@ -53,25 +53,34 @@
 
                         <div class="mb-3">
                             <label for="idioma">Idioma original:</label>
-                            <select name="idioma" id="idioma" class="form-select">
-                                <option value="">Elige un idioma</option>
-                                <?php
 
-                                foreach ( $idiomas as $idioma ) {
+                            <?php if ( empty($idIdiomas) ) { ?>
+                                <div class="form-label"><i class="fas fa-info-circle"></i> No hay idiomas registrados
+                                </div>
+                            <?php } else { ?>
 
-                                    if ( $idioma['language_id'] == $idIdioma ) {
-                                        $seleccionado = "selected";
-                                    } else {
-                                        $seleccionado = "";
+                                <select name="idioma" id="idioma" class="form-select">
+                                    <option value="">Elige un idioma</option>
+                                    <?php
+
+                                    foreach ( $idiomas as $idioma ) {
+
+                                        if ( $idioma['language_id'] == $idIdioma ) {
+                                            $seleccionado = "selected";
+                                        } else {
+                                            $seleccionado = "";
+                                        }
+
+                                        echo "<option {$seleccionado} value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
                                     }
 
-                                    echo "<option {$seleccionado} value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
-                                }
-
-                                ?>
+                                    ?>
 
 
-                            </select>
+                                </select>
+
+                            <?php } ?>
+
                         </div>
 
                         <div class="mb-3">
@@ -93,8 +102,9 @@
 
                                 ?>
 
-
                             </select>
+
+
                         </div>
 
                         <div class="mb-3">
