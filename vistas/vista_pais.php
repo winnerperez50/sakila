@@ -37,31 +37,17 @@ include_once "funciones/ayudante.php";
 
                     </form>
 
-                    <?php
-                    if ( isset($error) ) {
-                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                                {$error}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                    </div>";
-                    }
-
-                    if ( isset($mensaje) ) {
-                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                                {$mensaje}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                      </div>";
-                    }
-
-                    ?>
+                    <?php include_once "partes/partes_mensajes.php"; ?>
 
 
                 </div>
             </div>
             <hr>
+
+            <?php
+            if (empty($paises)) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
             <div class="row">
                 <div class="col-md-12">
@@ -69,6 +55,8 @@ include_once "funciones/ayudante.php";
                         <thead>
                         <th scope="col">ID</th>
                         <th scope="col">Pais</th>
+                        <th>Acciones</th>
+
                         </thead>
                         <tbody>
 
@@ -77,7 +65,10 @@ include_once "funciones/ayudante.php";
                             echo "<tr>
                                     <th scope=\"row\">{$pais["country_id"]}</th>
                                     <td>{$pais["country"]}</td>
-                                   
+                                   <td>                                    
+                                    <button class='btn btn-outline-danger btn-sm' title='Eliminar pais' name='eliminarPais' value='{$pais['country_id']}'><i class='fas fa-trash'></i></button>
+                                    <button class='btn btn-outline-info btn-sm' title='Editar pais' name='editarPais' value='{$pais['country_id']}'> <i class='fas fa-pen'></i> </button>
+                                    </td>
                                 </tr>";
 
                         }
@@ -86,7 +77,7 @@ include_once "funciones/ayudante.php";
                         </tbody>
                     </table>
                 </div>
-
+                <?php } ?>
 
             </div>
         </div>

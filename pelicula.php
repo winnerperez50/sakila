@@ -11,8 +11,8 @@ $nombrePagina = "Pelicula";
 $titulo = $_POST["titulo"] ?? "";
 $descripcion = $_POST["descripcion"] ?? "";
 $anoLanzamiento = $_POST["anoLanzamiento"] ?? "";
-$idioma = $_POST["idioma"] ?? "";
-$idioma2 = $_POST["idioma2"] ?? "";
+$idIdioma = $_POST["idioma"] ?? "";
+$idIdioma2 = $_POST["idioma2"] ?? "";
 $duracion = $_POST["duracion"] ?? "";
 $arrendamiento = $_POST["arrendamiento"] ?? "";
 $tamano = $_POST["tamano"] ?? "";
@@ -37,11 +37,11 @@ try {
             throw new Exception("El año de lanzamiento no puede estar vacio. Favor llenarlo.....");
         }
 
-        if ( empty($idioma) ) {
+        if ( empty($idIdioma) ) {
             throw new Exception("El idioma no puede estar vacio. Favor llenarlo.....");
         }
 
-        if ( empty($idioma2) ) {
+        if ( empty($idIdioma2) ) {
             throw new Exception("El idioma secundario no puede estar vacio. Favor llenarlo.....");
         }
 
@@ -73,7 +73,7 @@ try {
 
 
         // Preparar los datos
-        $datos = compact('titulo', 'descripcion', 'anoLanzamiento', 'idioma', 'idioma2', 'duracion',
+        $datos = compact('titulo', 'descripcion', 'anoLanzamiento', 'idIdioma', 'idIdioma2', 'duracion',
             'arrendamiento', 'tamano', 'reemplazo', 'clasificacion', 'caracteristicasEspeciales');
 
         imprimirArray($datos);

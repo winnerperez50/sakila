@@ -9,8 +9,8 @@ $nombrePagina = "Tienda";
 
 
 // Declarar las variabes
-$gerentePersonal = $_POST["gerentePersonal"] ?? "";
-$gerenteDireccion = $_POST["gerenteDireccion"] ?? "";
+$idGerentePersonal = $_POST["gerentePersonal"] ?? "";
+$idGerenteDireccion = $_POST["gerenteDireccion"] ?? "";
 
 
 // Asegurarnos de que el usuario alla echo click en el boton guardar ciudad.
@@ -18,28 +18,27 @@ try {
     if ( isset($_POST['guardarTienda']) ) {
 
         // Validar los datos
-        if ( empty($gerentePersonal) ) {
+        if ( empty($idGerentePersonal) ) {
             throw  new Exception("Debe seleccionar un gerente ");
         }
-        if ( empty($gerenteDireccion) ) {
+        if ( empty($idGerenteDireccion) ) {
             throw new Exception("Debe seleccionar una direccion");
         }
 
-
         // Preparar el array con los datos
-        $datos = compact('gerentePersonal', 'gerenteDireccion');
+        $datos = compact('idGerentePersonal', 'idGerenteDireccion');
 
         // Insertar los datos
         $ciudadInsertada = insertarTienda($conexion, $datos);
-        $mensaje = "Los datos de ciudad se guardaron correctamente";
+        $_SESSION['mensaje'] = "Los datos de ciudad se guardaron correctamente";
 
         // Lanzar error si no se han insertado los datos
         if ( ! $ciudadInsertada ) {
-            throw new Exception("Ha ocurrido un error al insertar los datos de la ciuada");
+            throw new Exception("Ha ocurrido un error al insertar los datos de la ciudad");
         }
 
         // Redireccionar la pagina
-        redireccionar("ciudad.php");
+        redireccionar("tienda.php");
 
     }
 } catch ( Exception $e ) {

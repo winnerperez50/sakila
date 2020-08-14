@@ -11,9 +11,9 @@ $nombrePagina = "Personal";
 //Declarar las variables
 $nombre = $_POST["nombre"] ?? "";
 $apellido = $_POST["apellido"] ?? "";
-$direccion = $_POST["direccion"] ?? "";
+$idDireccion = $_POST["direccion"] ?? "";
 $email = $_POST["email"] ?? "";
-$tienda = $_POST["tienda"] ?? "";
+$idTienda = $_POST["tienda"] ?? "";
 if ( isset($_POST["activo"]) ) {
     $activo = 1;
 } else {
@@ -35,7 +35,7 @@ try {
             throw new Exception("El apellido esta vacio. Favor llenarlo.....");
         }
 
-        if ( empty($direccion) ) {
+        if ( empty($idDireccion) ) {
             throw new Exception("La direccion esta vacia. Favor llenarlo.....");
         }
 
@@ -44,7 +44,7 @@ try {
             throw new Exception("El correo no puede estar vacio. Favor llenarlo......");
         }
 
-        if ( empty($tienda) ) {
+        if ( empty($idTienda) ) {
             throw new Exception("La tienda esta vacia. Favor llenarlo.....");
         }
 
@@ -61,9 +61,9 @@ try {
         $datos = [
             'nombre'        => $nombre,
             'apellido'      => $apellido,
-            'direccion'     => $direccion,
+            'direccion'     => $idDireccion,
             'email'         => $email,
-            'tienda'        => $tienda,
+            'tienda'        => $idTienda,
             'activo'        => $activo,
             'nombreUsuario' => $nombreUsuario,
             'password'      => $password
@@ -71,7 +71,7 @@ try {
 
         // insertar los datos
         $personalInsertado = insertarPersonal($conexion, $datos);
-        $mensaje = "Los datos del actor se guardaron correctamente";
+        $_SESSION['mensaje'] = "Los datos del actor se guardaron correctamente";
 
 
         // Lanzar un erros si no se Insertaron correctamente

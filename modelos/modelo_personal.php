@@ -21,6 +21,6 @@ from staff as sta left join address as ad on sta.address_id= ad.address_id  left
 function insertarPersonal($conexion, $datos)
 {
     $sql = "INSERT INTO staff (first_name, last_name, address_id,  email, store_id, active, username, password) 
-values (:nombre, :apellido, :direccion, :email, :tienda, :activo, :nombreUsuario, :password)";
+values (:nombre, :apellido, :idDireccion, :email, :idTienda, :activo, :nombreUsuario, :password)";
     return $conexion->prepare($sql)->execute($datos);
 }

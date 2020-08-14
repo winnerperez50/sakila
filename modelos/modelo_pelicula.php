@@ -18,7 +18,7 @@ function insertarPelicula($conexion, $datos)
 {
     $sql = 'INSERT INTO film (title, description, release_year, language_id, original_language_id,
                   rental_duration, rental_rate, length, replacement_cost, rating, special_features)
-                  VALUES (:titulo, :descripcion, :anoLanzamiento, :idioma, :idioma2, 
+                  VALUES (:titulo, :descripcion, :anoLanzamiento, :idIdioma, :idIdioma2, 
                           :duracion, :arrendamiento, :tamano, 
                           :reemplazo, :clasificacion, :caracteristicasEspeciales )';
     return $conexion->prepare($sql)->execute($datos);

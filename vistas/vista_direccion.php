@@ -39,7 +39,6 @@ include_once "funciones/ayudante.php";
                             <label for="distrito">Distrito</label>
                             <input type="text" name="distrito" id="distrito" class="form-control">
                         </div>
-
                         <div class="mb-3">
                             <label for="ciudad">Ciudad</label>
                             <select name="ciudad" id="ciudad" class="form-select">
@@ -47,7 +46,14 @@ include_once "funciones/ayudante.php";
                                 <?php
 
                                 foreach ( $ciudades as $ciudad ) {
-                                    echo "<option value=\"{$ciudad["city_id"]}\">{$ciudad["city"]}</option>";
+
+                                    if ( $ciudad['city_id'] == $ciudad ) {
+                                        $seleccionado = "selected";
+                                    } else {
+                                        $seleccionado = "";
+                                    }
+
+                                    echo "<option {$seleccionado} value=\"{$ciudad["city_id"]}\">{$ciudad["city"]}</option>";
                                 }
 
                                 ?>
@@ -73,49 +79,37 @@ include_once "funciones/ayudante.php";
 
                     </form>
 
-                    <?php
-                    if ( isset($error) ) {
-                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                                {$error}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                    </div>";
-                    }
-
-                    if ( isset($mensaje) ) {
-                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                                {$mensaje}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                      </div>";
-                    }
-
-                    ?>
+                    <?php include_once "partes/partes_mensajes.php"; ?>
 
 
                 </div>
             </div>
 
+            <hr>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <th scope="col">Id</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Direccion2</th>
-                        <th scope="col">Distrito</th>
-                        <th scope="col">Ciudad</th>
-                        <th scope="col">Codigo postal</th>
-                        <th scope="col">Telefono</th>
-                        </thead>
-                        <tbody>
+            <?php
+            if ( empty($infoDirecciones) ) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
-                        <?php
-                        foreach ( $infoDirecciones as $direccion ) {
-                            echo "<tr>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <th scope="col">Id</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Direccion2</th>
+                            <th scope="col">Distrito</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col">Codigo postal</th>
+                            <th scope="col">Telefono</th>
+                            </thead>
+                            <tbody>
+
+                            <?php
+                            foreach ( $infoDirecciones as $direccion ) {
+                                echo "<tr>
                                     <th scope=\"row\">{$direccion["address_id"]}</th>
                                     <td>{$direccion["address"]}</td>
                                     <td>{$direccion["address2"]}</td>
@@ -127,17 +121,16 @@ include_once "funciones/ayudante.php";
                             
                                 </tr>";
 
-                        }
+                            }
 
 
-                        ?>
-                        </tbody>
-                    </table>
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-
-            </div>
-
-
+            <?php } ?>
         </div>
 
     </div>

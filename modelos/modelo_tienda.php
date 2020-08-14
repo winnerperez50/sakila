@@ -22,7 +22,7 @@ function obtenerInformacionTiendas($conexion)
 
 function insertarTienda($conexion, $datos)
 {
-    $sql = "INSERT INTO store (manager_staff_id, address_id) VALUES (:gerentePersonal, :gerenteDireccion);";
+    $sql = "INSERT INTO store (manager_staff_id, address_id) VALUES (:idGerentePersonal, :idGerenteDireccion);";
 
     return $conexion->prepare($sql)->execute($datos);
 }

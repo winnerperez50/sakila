@@ -39,26 +39,7 @@ include_once "funciones/ayudante.php";
                     </form>
 
 
-                    <?php
-                    if ( isset($error) ) {
-                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                                {$error}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                    </div>";
-                    }
-
-                    if ( isset($mensaje) ) {
-                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                                {$mensaje}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                      </div>";
-                    }
-
-                    ?>
+                    <?php include_once "partes/partes_mensajes.php"; ?>
 
 
                 </div>
@@ -66,35 +47,42 @@ include_once "funciones/ayudante.php";
 
             <hr>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
+            <?php
+            if ( empty($idiomas) ) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
-                        </thead>
-                        <tbody>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th>Acciones</th>
 
-                        <?php
-                        foreach ( $idiomas as $idioma ) {
-                            echo "<tr>
+                            </thead>
+                            <tbody>
+
+                            <?php
+                            foreach ( $idiomas as $idioma ) {
+                                echo "<tr>
                                     <th scope=\"row\">{$idioma["language_id"]}</th>
-                                    <td>{$idioma["name"]}</td>
-                                   
-                                   
+                                    <td>{$idioma["name"]}</td>  
+                                 <td>
+                                    <button class='btn btn-outline-danger btn-sm' title='Eliminar idioma' name='eliminarIdioma' value='{$idioma['language_id']}'><i class='fas fa-trash'></i></button>
+                                    <button class='btn btn-outline-info btn-sm' title='Editar idioma' name='editarIdioma' value='{$idioma['language_id']}'> <i class='fas fa-pen'></i> </button>
+                                    </td>
                                 </tr>";
 
-                        }
+                            }
 
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
 
-                        ?>
-                        </tbody>
-                    </table>
                 </div>
-
-            </div>
-
+            <?php } ?>
 
         </div>
 

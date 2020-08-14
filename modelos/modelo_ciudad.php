@@ -17,3 +17,28 @@ function insertarCiudades($conexion, $datos)
     return $conexion->prepare($sql)->execute($datos);
 }
 
+
+// Eliminar ciudades
+function eliminarCiudades($conexion, $datos)
+{
+    $sql = " UPDATE address SET city_id = 1 WHERE city_id = :idCiudad;
+            DELETE FROM city WHERE city_id = :idCiudad;";
+
+    return $conexion->prepare($sql)->execute($datos);
+
+}
+
+// Editar ciudades
+function obtenerCiudadPorId($conexion, $datos)
+{
+    $sql = "SELECT * FROM city where city_id = :idCiudad;";
+    $query = $conexion->prepare($sql);
+    $query->execute($datos);
+    return $query->fetch();
+}
+
+function editarCiudades($conexion, $datos)
+{
+    $sql = "UPDATE city SET city=:nombreCiudad, country_id = :idPais WHERE city_id = :idCiudad;";
+    return $conexion->prepare($sql)->execute($datos);
+}

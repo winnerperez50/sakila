@@ -62,7 +62,7 @@ try {
 
         // insertar los datos
         $infoClientes = insertarClientes($conexion, $datos);
-        $mensaje = "Los datos del actor se guardaron correctamente";
+        $_SESSION['mensaje'] = "Los datos del actor se guardaron correctamente";
 
 
         // Lanzar un erros si no se Insertaron correctamente

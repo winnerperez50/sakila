@@ -4,9 +4,7 @@
 
 
 <!-- Incluyo sakila en la barra superior -->
-<?php include_once "modificacion.hp/modifificacion.php";
-include_once "funciones/ayudante.php";
-?>
+<?php include_once "modificacion.hp/modifificacion.php"; ?>
 
 
 <!-- Contenido   -->
@@ -28,12 +26,20 @@ include_once "funciones/ayudante.php";
 
                         <div class="mb-3">
                             <label for="gerentePersonal">Gerente personal</label>
+
                             <select name="gerentePersonal" id="gerentePersonal" class="form-select">
                                 <option value="">Seleccione un gerente</option>
                                 <?php
 
                                 foreach ( $personales as $personal ) {
-                                    echo "<option value=\"{$personal["staff_id"]}\">{$personal["first_name"]}</option>";
+
+                                    if ( $personal['staff_id'] == $idGerentePersonal ) {
+                                        $seleccionado = "selected";
+                                    } else {
+                                        $seleccionado = "";
+                                    }
+
+                                    echo "<option {$seleccionado} value=\"{$personal["staff_id"]}\">{$personal["first_name"]}</option>";
                                 }
 
                                 ?>
@@ -50,8 +56,16 @@ include_once "funciones/ayudante.php";
 
                                 <?php
 
+
                                 foreach ( $direcciones as $direccion ) {
-                                    echo "<option value=\"{$direccion["address_id"]}\">{$direccion["address"]}</option>";
+
+                                    if ( $direccion['address_id'] == $idGerenteDireccion ) {
+                                        $seleccionado = "selected";
+                                    } else {
+                                        $seleccionado = "";
+                                    }
+
+                                    echo "<option {$seleccionado} value=\"{$direccion["address_id"]}\">{$direccion["address"]}</option>";
                                 }
 
                                 ?>
@@ -67,62 +81,46 @@ include_once "funciones/ayudante.php";
 
                     </form>
 
-
-                    <?php
-                    if ( isset($error) ) {
-                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                                    {$error}
-                                         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                            <span aria-hidden=\"true\">&times;</span>
-                                  </button>
-                        </div>";
-                    }
-
-                    if ( isset($mensaje) ) {
-                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                                    {$mensaje}
-                                         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                            <span aria-hidden=\"true\">&times;</span>
-                                  </button>
-                          </div>";
-                    }
-
-                    ?>
-
+                    <?php include_once "partes/partes_mensajes.php"; ?>
 
                 </div>
             </div>
             <hr>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Tienda</th>
-                        </thead>
-                        <tbody>
+            <?php
+            if ( empty($informacionTiendas) ) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
-                        <?php
-                        foreach ( $informacionTiendas as $infoTienda ) {
-                            echo "<tr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tienda</th>
+                            </thead>
+                            <tbody>
+
+                            <?php
+                            foreach ( $informacionTiendas as $infoTienda ) {
+                                echo "<tr>
                                     <th scope=\"row\">{$infoTienda["store_id"]}</th>
                                     <td>{$infoTienda["first_name"]}</td>
                                     <td>{$infoTienda["address"]}</td>
                                    
                                 </tr>";
 
-                        }
+                            }
 
 
-                        ?>
-                        </tbody>
-                    </table>
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-
-            </div>
-
+            <?php } ?>
         </div>
 
     </div>

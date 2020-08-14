@@ -1,5 +1,9 @@
 <?php
 
+if ( session_status() == 1 ) {
+    session_start();
+}
+
 function imprimirArray($array)
 {
     echo "<pre>";
@@ -45,4 +49,16 @@ function redireccionar($ruta)
 {
     header("Location: {$ruta}", true, 303);
 }
+
+
+// Manejo de los mensajes de (exito) usando la session
+
+if ( session_status() == 2 ) {
+    $mensaje = $_SESSION['mensaje'] ?? "";
+
+    if ( isset($_SESSION['mensaje']) ) {
+        unset($_SESSION['mensaje']);
+    }
+}
+
 

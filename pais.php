@@ -22,7 +22,7 @@ try {
 
         // Insertar los datos
         $paisInsertado = insertarPaises($conexion, $datos);
-        $mensaje = "Los datos de ciudad se guardaron correctamente";
+        $_SESSION['mensaje'] = "Los datos de ciudad se guardaron correctamente";
 
         // Lanzar error si no se han insertado los datos
         if ( ! $paisInsertado ) {

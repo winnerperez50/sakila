@@ -37,31 +37,16 @@
 
                     </form>
 
-                    <?php
-                    if ( isset($error) ) {
-                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                                {$error}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                    </div>";
-                    }
-
-                    if ( isset($mensaje) ) {
-                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                                {$mensaje}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                      </div>";
-                    }
-
-                    ?>
-
+                    <?php include_once "partes/partes_mensajes.php"; ?>
 
                 </div>
             </div>
             <hr>
+
+            <?php
+            if (empty($categorias)) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
             <div class="row">
                 <div class="col-md-12">
@@ -69,6 +54,7 @@
                         <thead>
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
+                        <th>Acciones</th>
 
                         </thead>
                         <tbody>
@@ -78,7 +64,10 @@
                             echo "<tr>
                                     <th scope=\"row\">{$categoria["category_id"]}</th>
                                     <td>{$categoria["name"]}</td>
-                                                                     
+                                    <td>
+                                    <button class='btn btn-outline-danger btn-sm' title='Eliminar categoria' name='eliminarCategoria' value='{$categoria['category_id']}'><i class='fas fa-trash'></i></button>
+                                    <button class='btn btn-outline-info btn-sm' title='Editar categoria' name='editarCategoria' value='{$categoria['category_id']}'> <i class='fas fa-pen'></i> </button>
+                                    </td>    
                                 </tr>";
 
                         }
@@ -88,6 +77,9 @@
                         </tbody>
                     </table>
                 </div>
+
+                <?php } ?>
+
             </div>
 
         </div>

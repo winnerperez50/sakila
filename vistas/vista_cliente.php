@@ -33,8 +33,16 @@
                                 <option value="">Selecionar el numero de tiendas</option>
                                 <?php
 
+
                                 foreach ( $tiendas as $tienda ) {
-                                    echo "<option value=\"{$tienda["store_id"]}\">{$tienda["store_id"]}</option>";
+
+                                    if ( $tienda['store_id'] == $tiendas ) {
+                                        $seleccionado = "selected";
+                                    } else {
+                                        $seleccionado = "";
+                                    }
+
+                                    echo "<option {$seleccionado} value=\"{$tienda["store_id"]}\">{$tienda["store_id"]}</option>";
                                 }
 
                                 ?>
@@ -67,8 +75,16 @@
                                 <option value="">Listado de direcciones</option>
                                 <?php
 
+
                                 foreach ( $direcciones as $direccion ) {
-                                    echo "<option value=\"{$direccion["address_id"]}\">{$direccion["address"]}</option>";
+
+                                    if ( $direccion['address_id'] == $direccion ) {
+                                        $seleccionado = "selected";
+                                    } else {
+                                        $seleccionado = "";
+                                    }
+
+                                    echo "<option {$seleccionado} value=\"{$direccion["address_id"]}\">{$direccion["address"]}</option>";
                                 }
 
                                 ?>
@@ -90,56 +106,41 @@
 
 
                     </form>
-
-                    <?php
-                    if ( isset($error) ) {
-                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                                {$error}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                    </div>";
-                    }
-
-                    if ( isset($mensaje) ) {
-                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                                {$mensaje}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                      </div>";
-                    }
-
-                    ?>
+                    <?php include_once "partes/partes_mensajes.php"; ?>
 
                 </div>
             </div>
             <hr>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <th scope="col">Id</th>
-                        <th scope="col">Tienda</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Activo</th>
-                        <th scope="col">Fecha de creacion</th>
-                        </thead>
-                        <tbody>
+            <?php
+            if ( empty($informacionClientes) ) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
-                        <?php
-                        foreach ( $informacionClientes as $infoCliente ) {
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <th scope="col">Id</th>
+                            <th scope="col">Tienda</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Activo</th>
+                            <th scope="col">Fecha de creacion</th>
+                            </thead>
+                            <tbody>
 
-                            if ( $infoCliente['active'] == 1 ) {
-                                $icono = '<i class=\'fas fa-check text-success\'></i>';
-                            } else {
-                                $icono = '<i class=\'fas fa-times text-danger\'></i>';
-                            }
+                            <?php
+                            foreach ( $informacionClientes as $infoCliente ) {
 
-                            echo "<tr>
+                                if ( $infoCliente['active'] == 1 ) {
+                                    $icono = '<i class=\'fas fa-check text-success\'></i>';
+                                } else {
+                                    $icono = '<i class=\'fas fa-times text-danger\'></i>';
+                                }
+
+                                echo "<tr>
                                     <th scope=\"row\">{$infoCliente["customer_id"]}</th>
                                     <td>{$infoCliente["store_id"]}</td>
                                     <td>" . ucwords(strtolower($infoCliente['name'])) . "</td>
@@ -152,15 +153,16 @@
                                    <td>{$infoCliente["fecha"]}</td>
                                 </tr>";
 
-                        }
+                            }
 
-                        ?>
-                        </tbody>
-                    </table>
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
-            </div>
-
+            <?php } ?>
 
         </div>
 

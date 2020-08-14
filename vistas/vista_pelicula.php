@@ -58,7 +58,14 @@
                                 <?php
 
                                 foreach ( $idiomas as $idioma ) {
-                                    echo "<option value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
+
+                                    if ( $idioma['language_id'] == $idIdioma ) {
+                                        $seleccionado = "selected";
+                                    } else {
+                                        $seleccionado = "";
+                                    }
+
+                                    echo "<option {$seleccionado} value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
                                 }
 
                                 ?>
@@ -74,7 +81,14 @@
                                 <?php
 
                                 foreach ( $idiomas as $idioma ) {
-                                    echo "<option value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
+
+                                    if ( $idioma['language_id'] == $idIdioma2 ) {
+                                        $seleccionado = "selected";
+                                    } else {
+                                        $seleccionado = "";
+                                    }
+
+                                    echo "<option {$seleccionado} value=\"{$idioma["language_id"]}\">{$idioma["name"]}</option>";
                                 }
 
                                 ?>
@@ -145,54 +159,40 @@
 
                     </form>
 
-                    <?php
-                    if ( isset($error) ) {
-                        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                                {$error}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                    </div>";
-                    }
-
-                    if ( isset($mensaje) ) {
-                        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                                {$mensaje}
-                                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                              </button>
-                      </div>";
-                    }
-
-                    ?>
+                    <?php include_once "partes/partes_mensajes.php"; ?>
 
                 </div>
             </div>
 
+            <hr>
+            <?php
+            if ( empty($infoPeliculas) ) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <th scope="col">Id pelicula</th>
-                        <th scope="col">titulo</th>
-                        <th scope="col">Año lanzamiento</th>
-                        <th scope="col">Idioma original</th>
-                        <th scope="col">Otro idioma</th>
-                        <th scope="col">Duracion de alquiler</th>
-                        <th scope="col">Tasa de arrendamiento</th>
-                        <th scope="col">Tamaño</th>
-                        <th scope="col">Costo de reemplazo</th>
-                        <th scope="col">Clasificacion</th>
-                        <th scope="col">Caracteristicas especiales</th>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <th scope="col">Id pelicula</th>
+                            <th scope="col">titulo</th>
+                            <th scope="col">Año lanzamiento</th>
+                            <th scope="col">Idioma original</th>
+                            <th scope="col">Otro idioma</th>
+                            <th scope="col">Duracion de alquiler</th>
+                            <th scope="col">Tasa de arrendamiento</th>
+                            <th scope="col">Tamaño</th>
+                            <th scope="col">Costo de reemplazo</th>
+                            <th scope="col">Clasificacion</th>
+                            <th scope="col">Caracteristicas especiales</th>
 
 
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
 
-                        <?php
-                        foreach ( $infoPeliculas as $infoPelicula ) {
-                            echo "<tr>
+                            <?php
+                            foreach ( $infoPeliculas as $infoPelicula ) {
+                                echo "<tr>
                                     <th scope=\"row\">{$infoPelicula["film_id"]}</th>
                                     <td>{$infoPelicula["title"]}</td>
                                     <td>{$infoPelicula["description"]}</td>
@@ -205,16 +205,16 @@
                                     <td>{$infoPelicula["special_features"]}</td>
                                     </tr>";
 
-                        }
+                            }
 
-                        ?>
-                        </tbody>
-                    </table>
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
-            </div>
-
-
+            <?php } ?>
         </div>
 
     </div>
