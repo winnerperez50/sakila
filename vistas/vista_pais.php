@@ -5,7 +5,6 @@
 
 <!-- Incluyo sakila en la barra superior -->
 <?php include_once "modificacion.hp/modifificacion.php";
-include_once "funciones/ayudante.php";
 ?>
 
 
@@ -24,10 +23,14 @@ include_once "funciones/ayudante.php";
 
             <div class="row">
                 <div class="col-md-5">
+
                     <form action="" method="post">
+                        <input type="hidden" name="idPais" value="<?= $idPais ?>">
+
                         <div class="mb-3">
                             <label for="nombrePais">Pais</label>
-                            <input type="text" name="nombrePais" id="nombrePais" class="form-control">
+                            <input type="text" name="nombrePais" id="nombrePais"
+                                   class="form-control" value="<?= $nombrePais ?>">
                         </div>
 
 
@@ -51,18 +54,19 @@ include_once "funciones/ayudante.php";
 
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <th scope="col">ID</th>
-                        <th scope="col">Pais</th>
-                        <th>Acciones</th>
+                    <form action="" method="post">
+                        <table class="table">
+                            <thead>
+                            <th scope="col">ID</th>
+                            <th scope="col">Pais</th>
+                            <th>Acciones</th>
 
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
 
-                        <?php
-                        foreach ( $paises as $pais ) {
-                            echo "<tr>
+                            <?php
+                            foreach ( $paises as $pais ) {
+                                echo "<tr>
                                     <th scope=\"row\">{$pais["country_id"]}</th>
                                     <td>{$pais["country"]}</td>
                                    <td>                                    
@@ -71,11 +75,12 @@ include_once "funciones/ayudante.php";
                                     </td>
                                 </tr>";
 
-                        }
+                            }
 
-                        ?>
-                        </tbody>
-                    </table>
+                            ?>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
                 <?php } ?>
 

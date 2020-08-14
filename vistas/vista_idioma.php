@@ -24,11 +24,15 @@ include_once "funciones/ayudante.php";
 
             <div class="row">
                 <div class="col-md-5">
+
                     <form action="" method="post">
+                        <input type="hidden" name="idIdioma" value="<?= $idIdioma ?>">
+
+
                         <div class="mb-3">
                             <label for="nombreIdioma">Idioma</label>
                             <input type="text" name="nombreIdioma" id="nombreIdioma" placeholder="Digita el idioma"
-                                   class="form-control">
+                                   class="form-control" value="<?= $nombreIdioma ?>">
                         </div>
 
 
@@ -54,18 +58,19 @@ include_once "funciones/ayudante.php";
 
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th>Acciones</th>
+                        <form action="" method="post">
+                            <table class="table">
+                                <thead>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th>Acciones</th>
 
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
 
-                            <?php
-                            foreach ( $idiomas as $idioma ) {
-                                echo "<tr>
+                                <?php
+                                foreach ( $idiomas as $idioma ) {
+                                    echo "<tr>
                                     <th scope=\"row\">{$idioma["language_id"]}</th>
                                     <td>{$idioma["name"]}</td>  
                                  <td>
@@ -74,11 +79,12 @@ include_once "funciones/ayudante.php";
                                     </td>
                                 </tr>";
 
-                            }
+                                }
 
-                            ?>
-                            </tbody>
-                        </table>
+                                ?>
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
 
                 </div>

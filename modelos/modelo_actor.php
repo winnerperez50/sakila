@@ -26,7 +26,7 @@ function eliminarActores($conexion, $datos)
 
 }
 
-
+// Obtener actor po id
 function obtenerActoresPorId($conexion, $datos)
 {
     $sql = "SELECT * FROM actor WHERE actor_id = :idActor;";
@@ -37,6 +37,7 @@ function obtenerActoresPorId($conexion, $datos)
     return $query->fetch();
 }
 
+// editar actores
 function editarActores($conexion, $datos)
 {
     $sql = "UPDATE actor SET first_name = :nombreActor, last_name = :apellidoActor WHERE actor_id = :idActor;";

@@ -24,10 +24,15 @@
 
             <div class="row">
                 <div class="col-md-5">
+
+
                     <form action="" method="post">
+                        <input type="hidden" name="idCategoria" value="<?= $idCategoria ?>">
+
                         <div class="mb-3">
                             <label for="nombreCategoria">Categorias</label>
-                            <input type="text" name="nombreCategoria" id="nombreCategoria" class="form-control">
+                            <input type="text" name="nombreCategoria" id="nombreCategoria"
+                                   class="form-control" value="<?= $nombreCategoria ?>">
                         </div>
 
 
@@ -50,18 +55,19 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th>Acciones</th>
+                    <form action="" method="post">
+                        <table class="table">
+                            <thead>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th>Acciones</th>
 
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
 
-                        <?php
-                        foreach ( $categorias as $categoria ) {
-                            echo "<tr>
+                            <?php
+                            foreach ( $categorias as $categoria ) {
+                                echo "<tr>
                                     <th scope=\"row\">{$categoria["category_id"]}</th>
                                     <td>{$categoria["name"]}</td>
                                     <td>
@@ -70,12 +76,13 @@
                                     </td>    
                                 </tr>";
 
-                        }
+                            }
 
 
-                        ?>
-                        </tbody>
-                    </table>
+                            ?>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
 
                 <?php } ?>

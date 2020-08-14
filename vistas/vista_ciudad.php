@@ -25,7 +25,7 @@
                 <div class="col-md-5">
                     <form action="" method="post">
 
-                        <input type="hidden" name="idCiudad" value="<?= $idCiudad ?>">|
+                        <input type="hidden" name="idCiudad" value="<?= $idCiudad ?>">
 
                         <div class="mb-3">
                             <label for="nombreCiudad">Nombre de la ciudad</label>

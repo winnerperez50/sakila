@@ -1,6 +1,5 @@
 <?php
 
-
 include_once "funciones/ayudante.php";
 include_once "modelos/modelo_actor.php";
 
@@ -34,6 +33,8 @@ try {
             // insertar los datos
             $actorInsertado = insertarActores($conexion, $datos);
             $_SESSION['mensaje'] = "Los datos del actor se guardaron correctamente";// Lanzar un erros si no se Insertaron correctamente
+
+            // Lanzar error si no se han insertado los datos
             if ( ! $actorInsertado ) {
                 throw  new Exception("Ocurrio un error al insertar los datos del actor");
             }
@@ -46,7 +47,7 @@ try {
             $_SESSION['mensaje'] = "Los datos fueron editados correctamente";
 
             if ( ! $actorEditado ) {
-                throw  new Exception("Ocurrio un erro al editar los datos");
+                throw  new Exception("Ocurrio un error al editar los datos");
             }
         }
 
@@ -67,7 +68,7 @@ try {
         // Preparar array
         $datos = compact('idActor');
 
-        // Eliminar<
+        // Eliminar actor
         $eliminado = eliminarActores($conexion, $datos);
         $_SESSION['mensaje'] = "Los datos fueron eliminados correctamente";
 
@@ -82,13 +83,12 @@ try {
     }
 
 
-    // Asegurarno que el usuario haya hecho click en el boton editar actor
+    // Asegurarnos que el usuario haya hecho click en el boton editar actor
     if ( isset($_POST['editarActor']) ) {
         $idActor = $_POST['editarActor'] ?? "";
 
         if ( empty($idActor) ) {
             throw new Exception("EL valor del id del actor esta vacio.");
-
         }
 
         $datos = compact('idActor');
@@ -100,7 +100,6 @@ try {
         $apellidoActor = $resultado['last_name'];
 
     }
-
 
 } catch ( Exception $e ) {
     $error = $e->getMessage();
