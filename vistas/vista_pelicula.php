@@ -53,15 +53,9 @@
 
                         <div class="mb-3">
                             <label for="idioma">Idioma original:</label>
-
-                            <?php if ( empty($idIdiomas) ) { ?>
-                                <div class="form-label"><i class="fas fa-info-circle"></i> No hay idiomas registrados
-                                </div>
-                            <?php } else { ?>
-
-                                <select name="idioma" id="idioma" class="form-select">
-                                    <option value="">Elige un idioma</option>
-                                    <?php
+                            <select name="idioma" id="idioma" class="form-select">
+                                <option value="">Elige un idioma</option>
+                                <?php
 
                                     foreach ( $idiomas as $idioma ) {
 
@@ -76,10 +70,8 @@
 
                                     ?>
 
-
                                 </select>
 
-                            <?php } ?>
 
                         </div>
 
